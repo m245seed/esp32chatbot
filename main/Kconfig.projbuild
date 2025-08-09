@@ -34,47 +34,11 @@ config USE_WECHAT_MESSAGE_STYLE
         使用微信聊天界面风格
 
 config USE_ESP_WAKE_WORD
-    bool "Enable Wake Word Detection (without AFE)"
+    bool "Enable Wake Word Detection"
     default n
-    depends on IDF_TARGET_ESP32C3 || IDF_TARGET_ESP32C5 || IDF_TARGET_ESP32C6 || (IDF_TARGET_ESP32 && SPIRAM)
+    depends on IDF_TARGET_ESP32C6
     help
-        支持 ESP32 C3、ESP32 C5 与 ESP32 C6，增加ESP32支持（需要开启PSRAM）
-
-config USE_AFE_WAKE_WORD
-    bool "Enable Wake Word Detection (AFE)"
-    default y
-    depends on (IDF_TARGET_ESP32S3 || IDF_TARGET_ESP32P4) && SPIRAM
-    help
-        需要 ESP32 S3 与 PSRAM 支持
-
-config USE_CUSTOM_WAKE_WORD
-    bool "Enable Custom Wake Word Detection"
-    default n
-    depends on (IDF_TARGET_ESP32S3 || IDF_TARGET_ESP32P4) && SPIRAM && (!USE_AFE_WAKE_WORD)
-    help
-        需要 ESP32 S3 与 PSRAM 支持
-
-config CUSTOM_WAKE_WORD
-    string "Custom Wake Word"
-    default "xiao tu dou"
-    depends on USE_CUSTOM_WAKE_WORD
-    help
-        自定义唤醒词，中文用拼音表示，每个字之间用空格隔开
-
-config CUSTOM_WAKE_WORD_DISPLAY
-    string "Custom Wake Word Display"
-    default "小土豆"
-    depends on USE_CUSTOM_WAKE_WORD
-    help
-        唤醒后发送给服务器的问候语
-
-config CUSTOM_WAKE_WORD_THRESHOLD
-    int "Custom Wake Word Threshold (%)"
-    default 20
-    range 1 99
-    depends on USE_CUSTOM_WAKE_WORD
-    help
-        自定义唤醒词阈值，范围1-99，越小越敏感，默认10
+        仅支持 ESP32 C6
 
 config USE_ACOUSTIC_WIFI_PROVISIONING
     bool "Enable Acoustic WiFi Provisioning"

@@ -75,7 +75,7 @@ std::string Board::GetJson() {
             "minimum_free_heap_size": 123456,
             "mac_address": "00:00:00:00:00:00",
             "uuid": "00000000-0000-0000-0000-000000000000",
-            "chip_model_name": "esp32s3",
+            "chip_model_name": "esp32c6",
             "chip_info": {
                 "model": 1,
                 "cores": 2,
