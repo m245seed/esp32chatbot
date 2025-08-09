@@ -46,8 +46,6 @@ endif()
 
 # Language assets
 set(LANG_DIR "en-US")
-set(LANG_JSON "${CMAKE_CURRENT_SOURCE_DIR}/assets/${LANG_DIR}/language.json")
-set(LANG_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/assets/lang_config.h")
 file(GLOB LANG_SOUNDS ${CMAKE_CURRENT_SOURCE_DIR}/assets/${LANG_DIR}/*.p3)
 file(GLOB COMMON_SOUNDS ${CMAKE_CURRENT_SOURCE_DIR}/assets/common/*.p3)
 
@@ -61,18 +59,3 @@ if(NOT BOARD_NAME)
 endif()
 target_compile_definitions(${COMPONENT_LIB}
                     PRIVATE BOARD_TYPE="${BOARD_TYPE}" BOARD_NAME="${BOARD_NAME}")
-
-add_custom_command(
-    OUTPUT ${LANG_HEADER}
-    COMMAND python ${PROJECT_DIR}/scripts/gen_lang.py
-            --input "${LANG_JSON}"
-            --output "${LANG_HEADER}"
-    DEPENDS
-        ${LANG_JSON}
-        ${PROJECT_DIR}/scripts/gen_lang.py
-    COMMENT "Generating ${LANG_DIR} language config"
-)
-
-add_custom_target(lang_header ALL
-    DEPENDS ${LANG_HEADER}
-)
